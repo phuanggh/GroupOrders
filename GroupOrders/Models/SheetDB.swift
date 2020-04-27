@@ -88,7 +88,7 @@ internal struct SheetDBController {
     
     
     //MARK: - POST
-    func postData(newOrder: Order) {
+    func postData(newOrder: Order, completion: @escaping() -> ()) {
         let urlStr = "https://sheetdb.io/api/v1/dk4jichclc5qu"
 
         if let url = URL(string: urlStr) {

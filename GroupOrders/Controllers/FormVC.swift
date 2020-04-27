@@ -88,7 +88,37 @@ class FormVC: UIViewController {
 
     
     @IBAction func submitButtonPressed(_ sender: Any) {
-        returnData()
+//        returnData()
+
+    }
+    
+    @IBSegueAction func formToOrderSegueAction(_ coder: NSCoder) -> OrdersVC? {
+        let controller = OrdersVC(coder: coder)
+        print("segue action triggered")
+        
+        newOrder.name = nameTextField.text ?? ""
+        newOrder.item = itemTextField.text ?? ""
+        newOrder.sugar = sugar.rawValue
+        newOrder.size = size.rawValue
+        if hotSwitchOutlet.isOn {
+            newOrder.ice = IceLevel.hot.rawValue
+        } else {
+            newOrder.ice = ice.rawValue
+        }
+        if commentTextFieldOutlet.text != "" {
+            newOrder.comment = commentTextFieldOutlet.text
+        }
+        
+        SheetDBController.shared.postData(newOrder: newOrder) {
+            print("post data")
+            SheetDBController.shared.getData { (orders) in
+                controller?.orders = orders!
+                print("get data")
+            }
+        }
+        
+        
+        return controller
     }
     
     
@@ -112,7 +142,9 @@ class FormVC: UIViewController {
             newOrder.comment = commentTextFieldOutlet.text
         }
         
-        SheetDBController.shared.postData(newOrder: newOrder)
+        SheetDBController.shared.postData(newOrder: newOrder) {
+            SheetDBController.shared
+        }
         
         
 //        print(newOrder)

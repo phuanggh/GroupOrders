@@ -168,7 +168,7 @@
                                 <state key="normal" title="送出訂單"/>
                                 <connections>
                                     <action selector="submitButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vkc-iK-XyA"/>
-                                    <segue destination="N1R-Nt-46D" kind="show" destinationCreationSelector="submitSegueAction:" id="76a-sT-Gxg"/>
+                                    <segue destination="N1R-Nt-46D" kind="show" destinationCreationSelector="formToOrderSegueAction:" id="76a-sT-Gxg"/>
                                 </connections>
                             </button>
                         </subviews>
