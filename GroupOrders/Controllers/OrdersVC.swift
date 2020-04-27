@@ -18,17 +18,17 @@ class OrdersVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        SheetDBController.shared.getData { (orders) in
-            self.orders = orders!
-//            print(orders!)
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                print("reload table view")
-            }
-
-        }
+//        SheetDBController.shared.getData { (orders) in
+//            self.orders = orders!
+////            print(orders!)
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//                print("reload table view")
+//            }
+//
+//        }
         
-//        // MARK: - Test API
+        // MARK: - Test API
 //        SheetDBController.shared.testGetData {
 //            (result) in
 //            print("result is: \(result!)")
@@ -69,12 +69,30 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource {
         cell.iceLabel.text = "冰塊：\(order.ice)"
         cell.sizeLabel.text = "大小：\(order.size)"
         cell.mixinLabel.text = "加料：\(order.mixin ?? "")"
-        cell.priceLabel.text = "\(order.price)元"
+        cell.priceLabel.text = "\(order.price ?? "")元"
         cell.commentLabel.text = "備註：\(order.comment ?? "")"
         
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
+            
+            let DBno = self.orders[indexPath.row].no
+            SheetDBController.shared.deleteData(DBno: DBno)
+            
+            self.orders.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            completionHandler(true)
+        }
+        
+        var config = UISwipeActionsConfiguration()
+        config = UISwipeActionsConfiguration(actions: [deleteAction])
+        config.performsFirstActionWithFullSwipe = true
+        return config
+    }
+
     
 }

@@ -100,6 +100,8 @@ class FormVC: UIViewController {
         newOrder.item = itemTextField.text ?? ""
         newOrder.sugar = sugar.rawValue
         newOrder.size = size.rawValue
+        newOrder.price = priceTextFieldOutlet.text ?? ""
+        
         if hotSwitchOutlet.isOn {
             newOrder.ice = IceLevel.hot.rawValue
         } else {
@@ -113,7 +115,12 @@ class FormVC: UIViewController {
             print("post data")
             SheetDBController.shared.getData { (orders) in
                 controller?.orders = orders!
-                print("get data")
+               
+                DispatchQueue.main.async {
+                    controller?.tableView.reloadData()
+                    print("get data")
+                }
+                
             }
         }
         
@@ -123,38 +130,11 @@ class FormVC: UIViewController {
     
     
     
-    func returnData() {
-//        var newOrder: Order!
-//        name = nameTextField.text ?? ""
-//        item = itemTextField.text ?? ""
-
-
-        newOrder.name = nameTextField.text ?? ""
-        newOrder.item = itemTextField.text ?? ""
-        newOrder.sugar = sugar.rawValue
-        newOrder.size = size.rawValue
-        if hotSwitchOutlet.isOn {
-            newOrder.ice = IceLevel.hot.rawValue
-        } else {
-            newOrder.ice = ice.rawValue
-        }
-        if commentTextFieldOutlet.text != "" {
-            newOrder.comment = commentTextFieldOutlet.text
-        }
-        
-        SheetDBController.shared.postData(newOrder: newOrder) {
-            SheetDBController.shared
-        }
-        
-        
-//        print(newOrder)
-
-    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
 
 //        SheetDBController.shared.testGetData { (orders) in
 //            print(orders)

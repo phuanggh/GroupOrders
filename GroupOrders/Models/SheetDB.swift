@@ -13,6 +13,7 @@ import UIKit
 //
 //}
 struct Order: Codable {
+    var no: String
     var name: String
     var item: String
     var sugar: String
@@ -23,6 +24,7 @@ struct Order: Codable {
     var comment: String?
     
     init() {
+        no = "INCREMENT"
         name = ""
         item = ""
         sugar = ""
@@ -110,8 +112,8 @@ internal struct SheetDBController {
 //                    print("errer: \(error)")
                     if let returnData = returnData, let dic = try? JSONDecoder().decode([String: Int].self, from: returnData), dic["created"] == 1 {
                         print("Post succeeded")
+                        completion()
                     } else {
-
                         print("Post failed")
                     }
 
@@ -119,16 +121,32 @@ internal struct SheetDBController {
                 
             }
         }
+    }
+    
+    // MARK: - DELETE
+    func deleteData(DBno: String) {
+        let urlStr = "https://sheetdb.io/api/v1/dk4jichclc5qu/no/\(DBno)"
+        if let url = URL(string: urlStr) {
+            var request = URLRequest(url: url)
+            request.httpMethod = "DELETE"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            URLSession.shared.dataTask(with: request) { returnData, response, error in
+                if let returnData = returnData, let dic = try? JSONDecoder().decode([String: Int].self, from: returnData), dic["deleted"] == 1 {
+                    print("Delete succeeded")
+                } else {
+                    print("Delete failed")
+                }
+            }.resume()
+            
+        }
 
-        
-        
     }
     
     
     
     // MARK: - Test API data
     func testGetData(completion: ([Order]?) -> ()) {
-        guard let data = NSDataAsset(name: "sheetDB")?.data else {
+        guard let data = NSDataAsset(name: "sheetDB2")?.data else {
            print("data not exist")
            return
         }
