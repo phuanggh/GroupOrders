@@ -10,6 +10,8 @@ import UIKit
 
 class FormVC: UIViewController {
 
+    var isNewOrder = true
+    
     var newOrder = Order()
 //    var item: String!
 //    var name: String!
@@ -87,21 +89,64 @@ class FormVC: UIViewController {
     }
 
     
-    @IBAction func submitButtonPressed(_ sender: Any) {
-//        returnData()
-
+    @IBAction func orderListButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "formToOrdersVCSegue", sender: 1)
+            print(sender.tag)
     }
     
-    @IBSegueAction func formToOrderSegueAction(_ coder: NSCoder) -> OrdersVC? {
-        let controller = OrdersVC(coder: coder)
-        print("segue action triggered")
+    
+    @IBAction func submitButtonPressed(_ sender: UIButton) {
+//        returnData()
+        performSegue(withIdentifier: "formToOrdersVCSegue", sender: 2)
+            print(sender.tag)
+    }
+    
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! OrdersVC
         
+        let sender = sender as! Int
+//        print(sender.tag)
+        if sender == 2 {
+        
+            submitNewOrder()
+            SheetDBController.shared.postData(newOrder: newOrder) {
+                print("post data")
+                
+                SheetDBController.shared.getData { (orders) in
+                    destinationVC.orders = orders!
+                           
+                    DispatchQueue.main.async {
+                        destinationVC.tableView.reloadData()
+                        print("get data")
+                    }
+                            
+                }
+            }
+        
+        } else {
+            
+            SheetDBController.shared.getData { (orders) in
+                destinationVC.orders = orders!
+                
+                DispatchQueue.main.async {
+                    destinationVC.tableView.reloadData()
+                    print("get data")
+                    }
+                            
+            }
+        }
+    }
+
+    func submitNewOrder() {
         newOrder.name = nameTextField.text ?? ""
         newOrder.item = itemTextField.text ?? ""
         newOrder.sugar = sugar.rawValue
         newOrder.size = size.rawValue
         newOrder.price = priceTextFieldOutlet.text ?? ""
-        
+                
         if hotSwitchOutlet.isOn {
             newOrder.ice = IceLevel.hot.rawValue
         } else {
@@ -110,24 +155,46 @@ class FormVC: UIViewController {
         if commentTextFieldOutlet.text != "" {
             newOrder.comment = commentTextFieldOutlet.text
         }
-        
-        SheetDBController.shared.postData(newOrder: newOrder) {
-            print("post data")
-            SheetDBController.shared.getData { (orders) in
-                controller?.orders = orders!
-               
-                DispatchQueue.main.async {
-                    controller?.tableView.reloadData()
-                    print("get data")
-                }
-                
-            }
-        }
-        
-        
-        return controller
+
+
     }
     
+//    @IBSegueAction func formToOrderSegueAction(_ coder: NSCoder) -> OrdersVC? {
+//        let controller = OrdersVC(coder: coder)
+//        print("segue action triggered")
+//
+//        newOrder.name = nameTextField.text ?? ""
+//        newOrder.item = itemTextField.text ?? ""
+//        newOrder.sugar = sugar.rawValue
+//        newOrder.size = size.rawValue
+//        newOrder.price = priceTextFieldOutlet.text ?? ""
+//
+//        if hotSwitchOutlet.isOn {
+//            newOrder.ice = IceLevel.hot.rawValue
+//        } else {
+//            newOrder.ice = ice.rawValue
+//        }
+//        if commentTextFieldOutlet.text != "" {
+//            newOrder.comment = commentTextFieldOutlet.text
+//        }
+//
+//        SheetDBController.shared.postData(newOrder: newOrder) {
+//            print("post data")
+//            SheetDBController.shared.getData { (orders) in
+//                controller?.orders = orders!
+//
+//                DispatchQueue.main.async {
+//                    controller?.tableView.reloadData()
+//                    print("get data")
+//                }
+//
+//            }
+//        }
+//
+//
+//        return controller
+//    }
+//
     
     
     

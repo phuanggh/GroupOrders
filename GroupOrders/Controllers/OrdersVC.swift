@@ -13,10 +13,13 @@ class OrdersVC: UIViewController {
     var orders = [Order]()
 
     
+    @IBOutlet weak var numOfTotalItemLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        numOfTotalItemLabel.text = String(orders.count)
 
 //        SheetDBController.shared.getData { (orders) in
 //            self.orders = orders!

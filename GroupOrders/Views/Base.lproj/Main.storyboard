@@ -162,13 +162,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kv4-A4-1kh">
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kv4-A4-1kh">
                                 <rect key="frame" x="156" y="567" width="62" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="送出訂單"/>
                                 <connections>
                                     <action selector="submitButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vkc-iK-XyA"/>
-                                    <segue destination="N1R-Nt-46D" kind="show" destinationCreationSelector="formToOrderSegueAction:" id="76a-sT-Gxg"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -176,7 +175,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="GUe-tv-VRS">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="list.bullet" catalog="system" id="yEn-eL-1Kf"/>
+                        <barButtonItem key="rightBarButtonItem" tag="1" title="Item" image="list.bullet" catalog="system" id="yEn-eL-1Kf">
+                            <connections>
+                                <action selector="orderListButtonPressed:" destination="BYZ-38-t0r" id="BmR-rC-rfh"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="commentTextFieldOutlet" destination="nGK-bb-wlC" id="5fX-YI-7IO"/>
@@ -185,7 +188,7 @@
                         <outlet property="itemTextField" destination="RYL-5G-bJl" id="eL6-KG-4WV"/>
                         <outlet property="nameTextField" destination="Q1J-hF-ozC" id="NT5-XT-cnf"/>
                         <outlet property="priceTextFieldOutlet" destination="7sg-Aj-KtU" id="c3l-TL-A50"/>
-                        <segue destination="N1R-Nt-46D" kind="show" identifier="formToOrdersSegue" id="fhj-Zh-wOV"/>
+                        <segue destination="N1R-Nt-46D" kind="show" identifier="formToOrdersVCSegue" id="fhj-Zh-wOV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -325,6 +328,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="9KS-Ly-aBL"/>
                     <connections>
+                        <outlet property="numOfTotalItemLabel" destination="6C2-2R-NeT" id="L85-y9-sez"/>
                         <outlet property="tableView" destination="tyc-XO-9Jd" id="TxT-tB-prn"/>
                     </connections>
                 </viewController>
@@ -354,7 +358,4 @@
     <resources>
         <image name="list.bullet" catalog="system" width="64" height="44"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="76a-sT-Gxg"/>
-    </inferredMetricsTieBreakers>
 </document>
