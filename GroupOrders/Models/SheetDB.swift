@@ -13,24 +13,24 @@ import UIKit
 //
 //}
 struct Order: Codable {
-    var no: String
+    var id: String
     var name: String
     var item: String
     var sugar: String
     var ice: String
     var size: String
     var mixin: String?
-    var price: String?
+    var price: String
     var comment: String?
     
     init() {
-        no = "INCREMENT"
+        id = "INCREMENT"
         name = ""
         item = ""
         sugar = ""
         ice = ""
         size = ""
-//        price = ""
+        price = ""
     }
 }
 
@@ -101,7 +101,8 @@ internal struct SheetDBController {
 //            var postData = newOrder
 //            print(newOrder)
             let postData = ["data":newOrder]
-//            print(postData)
+            print(postData)
+            
             if let data = try? JSONEncoder().encode(postData) {
 //                request.httpBody = data
                 
@@ -123,9 +124,39 @@ internal struct SheetDBController {
         }
     }
     
+    //MARK: - PUT
+    func putData(updatedOrder: Order, DBID: String, completion: @escaping () -> ()) {
+        let urlStr = "https://sheetdb.io/api/v1/dk4jichclc5qu/id/\(DBID)"
+        if let url = URL(string: urlStr) {
+            var request = URLRequest(url: url)
+            request.httpMethod = "PUT"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+            
+            let putData = ["data":updatedOrder]
+//            print("updated order: \(putData)")
+            if let data = try? JSONEncoder().encode(putData) {
+                URLSession.shared.uploadTask(with: request, from: data) { returnData, response, error in
+                    
+//                    print("return data: \(returnData)")
+//                    print("response: \(response)")
+//                    print("errer: \(error)")
+                    
+                    if let returnData = returnData, let dic = try? JSONDecoder().decode([String: Int].self, from: returnData), dic["updated"] == 1 {
+                        print("Put succeeded")
+                        completion()
+                    } else {
+                        print("Put failed")
+                    }
+                }.resume()
+            }
+        }
+        
+    }
+    
     // MARK: - DELETE
     func deleteData(DBno: String) {
-        let urlStr = "https://sheetdb.io/api/v1/dk4jichclc5qu/no/\(DBno)"
+        let urlStr = "https://sheetdb.io/api/v1/dk4jichclc5qu/id/\(DBno)"
         if let url = URL(string: urlStr) {
             var request = URLRequest(url: url)
             request.httpMethod = "DELETE"
