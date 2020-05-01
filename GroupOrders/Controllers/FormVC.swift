@@ -103,14 +103,42 @@ class FormVC: UIViewController {
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
 //        returnData()
-        if isNewOrder {
-            performSegue(withIdentifier: "formToOrdersVCSegue", sender: "submitNewOrder")
-//            print(sender.tag)
-            print("submit button pressed: \(isNewOrder)")
+        
+        if nameTextFieldOutlet.text?.isEmpty == false, itemTextFieldOutlet.text?.isEmpty == false, priceTextFieldOutlet.text?.isEmpty == false {
+        
+            if isNewOrder {
+                performSegue(withIdentifier: "formToOrdersVCSegue", sender: "submitNewOrder")
+    //            print(sender.tag)
+                print("submit button pressed: \(isNewOrder)")
+            } else {
+                performSegue(withIdentifier: "unwindToOrderVC", sender: "editOrder")
+                print("submit button pressed: \(isNewOrder)")
+            }
+            
         } else {
-            performSegue(withIdentifier: "unwindToOrderVC", sender: "editOrder")
-            print("submit button pressed: \(isNewOrder)")
+            if nameTextFieldOutlet.text?.isEmpty == true {
+                nameTextFieldOutlet.layer.borderWidth = 1
+                nameTextFieldOutlet.layer.borderColor = UIColor.systemPink.cgColor
+            } else {
+                nameTextFieldOutlet.layer.borderColor = UIColor.clear.cgColor
+            }
+            
+            if itemTextFieldOutlet.text?.isEmpty == true {
+                itemTextFieldOutlet.layer.borderWidth = 1
+                itemTextFieldOutlet.layer.borderColor = UIColor.systemPink.cgColor
+            } else {
+                itemTextFieldOutlet.layer.borderColor = UIColor.clear.cgColor
+            }
+            
+            if priceTextFieldOutlet.text?.isEmpty == true {
+                priceTextFieldOutlet.layer.borderWidth = 1
+                priceTextFieldOutlet.layer.borderColor = UIColor.systemPink.cgColor
+            } else {
+                priceTextFieldOutlet.layer.borderColor = UIColor.clear.cgColor
+            }
         }
+        
+
         
     }
     
@@ -141,8 +169,6 @@ class FormVC: UIViewController {
         
     }
     
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! OrdersVC
         
@@ -169,7 +195,7 @@ class FormVC: UIViewController {
             submitNewOrder()
             SheetDBController.shared.putData(updatedOrder: newOrder, DBID: newOrder.id) {
                 
-                    SheetDBController.shared.getData { (orders) in
+                SheetDBController.shared.getData { (orders) in
                     destinationVC.orders = orders!
                            
                     DispatchQueue.main.async {
@@ -193,19 +219,7 @@ class FormVC: UIViewController {
             }
         }
     }
-    
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        print("should perform segue")
-        if nameTextFieldOutlet.text?.isEmpty == false, itemTextFieldOutlet.text?.isEmpty == false, priceTextFieldOutlet.text?.isEmpty == false {
-            print("text field is empty? \(nameTextFieldOutlet.text?.isEmpty)")
-            return true
-        } else {
-            if nameTextFieldOutlet.text?.isEmpty == false {
-                nameTextFieldOutlet.layer.borderColor = UIColor.red.cgColor
-            }
-            return false
-        }
-    }
+
 
 
     

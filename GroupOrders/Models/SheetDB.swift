@@ -101,7 +101,7 @@ internal struct SheetDBController {
 //            var postData = newOrder
 //            print(newOrder)
             let postData = ["data":newOrder]
-            print(postData)
+//            print(postData)
             
             if let data = try? JSONEncoder().encode(postData) {
 //                request.httpBody = data
