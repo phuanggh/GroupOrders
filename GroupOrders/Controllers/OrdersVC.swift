@@ -62,8 +62,11 @@ class OrdersVC: UIViewController {
         destinationVC.newOrder.id = selectedItem.id
         destinationVC.name = selectedItem.name
         destinationVC.item = selectedItem.item
-        destinationVC.price = selectedItem.price ?? ""
+//        destinationVC.price = selectedItem.price
+        destinationVC.price = selectedItem.mixin == "" ? selectedItem.price : String(Int(selectedItem.price)! - 10)
+        
         destinationVC.comment = selectedItem.comment ?? ""
+//        destinationVC.
 
         switch selectedItem.sugar {
         case SugarLevel.normal.rawValue:
@@ -103,6 +106,17 @@ class OrdersVC: UIViewController {
         default:
             destinationVC.size = .big
         }
+        
+//        if selectedItem.mixin != nil {
+//            destinationVC.mixin = "白玉珍珠"
+//            destinationVC.addWBubbleButtonOutlet.isSelected = true
+//        }
+        
+        destinationVC.mixin = selectedItem.mixin == nil ? "" : "白玉珍珠"
+//        print("Order VC: \(selectedItem.mixin)")
+//        destinationVC.addWBubbleButtonOutlet.isSelected = selectedItem.mixin == nil ? false : true
+        
+//        print("selected item: \(selectedItem), mixin: \(selectedItem.mixin)")
 
 
     }
@@ -132,7 +146,7 @@ extension OrdersVC: UITableViewDelegate, UITableViewDataSource {
         cell.iceLabel.text = "冰塊：\(order.ice)"
         cell.sizeLabel.text = "大小：\(order.size)"
         cell.mixinLabel.text = "加料：\(order.mixin ?? "")"
-        cell.priceLabel.text = "\(order.price ?? "")元"
+        cell.priceLabel.text = "\(order.price )元"
         cell.commentLabel.text = "備註：\(order.comment ?? "")"
         
         return cell

@@ -34,17 +34,17 @@ struct Order: Codable {
     }
 }
 
-enum ParamKey: String {
-    //case data
-    case name
-    case item
-    case sugar
-    case ice
-    case size
-    case mixin
-    case price
-    case comment
-}
+//enum ParamKey: String {
+//    //case data
+//    case name
+//    case item
+//    case sugar
+//    case ice
+//    case size
+//    case mixin
+//    case price
+//    case comment
+//}
 
 enum SugarLevel: String {
     case normal = "全糖"

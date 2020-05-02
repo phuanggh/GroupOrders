@@ -122,11 +122,11 @@
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jPg-jW-9ZE">
-                                <rect key="frame" x="101" y="410" width="46" height="30"/>
+                                <rect key="frame" x="93" y="410" width="62" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="大珍珠"/>
+                                <state key="normal" title="白玉珍珠"/>
                                 <connections>
-                                    <action selector="bigBubble:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mgm-XY-Cw6"/>
+                                    <action selector="addWBubbleSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cff-NN-l0B"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="備註" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGI-B3-XZl">
@@ -170,6 +170,14 @@
                                     <action selector="submitButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vkc-iK-XyA"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1LD-8z-RKx">
+                                <rect key="frame" x="303" y="177" width="39" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Menu"/>
+                                <connections>
+                                    <action selector="menuButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3z1-g6-ayp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -182,6 +190,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addWBubbleButtonOutlet" destination="jPg-jW-9ZE" id="VF8-KK-3TM"/>
                         <outlet property="commentTextFieldOutlet" destination="nGK-bb-wlC" id="5fX-YI-7IO"/>
                         <outlet property="hotSwitchOutlet" destination="P0F-m1-C4e" id="Jbu-QR-fXK"/>
                         <outlet property="iceSegOutlet" destination="p7Y-c3-sta" id="Pa0-D8-lET"/>
@@ -192,6 +201,7 @@
                         <outlet property="sugarSegOutlet" destination="XEx-c9-WEq" id="vLh-F4-Iqq"/>
                         <segue destination="N1R-Nt-46D" kind="show" identifier="formToOrdersVCSegue" id="fhj-Zh-wOV"/>
                         <segue destination="MaS-p8-pU5" kind="unwind" identifier="unwindToOrderVC" unwindAction="unwindToOrderVC:" id="oGj-iF-wg5"/>
+                        <segue destination="9AR-2I-X80" kind="presentation" identifier="formToPickerSegue" modalPresentationStyle="overCurrentContext" id="dGu-3n-tRc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -341,7 +351,73 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Khp-za-KbJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="eDt-JF-tF2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1851" y="120"/>
+            <point key="canvasLocation" x="2000" y="657"/>
+        </scene>
+        <!--Menu PickerVC-->
+        <scene sceneID="eD8-ub-cHf">
+            <objects>
+                <viewController id="9AR-2I-X80" customClass="MenuPickerVC" customModule="GroupOrders" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vrk-rl-cGY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FXG-su-gWs">
+                                <rect key="frame" x="40" y="255" width="339" height="309"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MENU" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2I2-W1-J12">
+                                        <rect key="frame" x="0.0" y="0.0" width="339" height="39"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AxR-RA-t5O">
+                                        <rect key="frame" x="-17" y="35" width="356" height="216"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="9AR-2I-X80" id="afO-qq-B32"/>
+                                            <outlet property="delegate" destination="9AR-2I-X80" id="xVj-G8-zhx"/>
+                                        </connections>
+                                    </pickerView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fwg-R8-Wx8">
+                                        <rect key="frame" x="306" y="3" width="33" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="multiply" catalog="system">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="returnButtonPressed:" destination="9AR-2I-X80" eventType="touchUpInside" id="dzs-yV-mj4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O6I-Uu-jw1">
+                                        <rect key="frame" x="154" y="259" width="31" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="確認"/>
+                                        <connections>
+                                            <action selector="submitButtonPressed:" destination="9AR-2I-X80" eventType="touchUpInside" id="KLn-pz-HPQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="FPL-6q-F4n"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="sIv-uH-qmc"/>
+                    <connections>
+                        <outlet property="menuPickerOutlet" destination="AxR-RA-t5O" id="M43-j0-QJi"/>
+                        <segue destination="fC4-8e-g3e" kind="unwind" identifier="unwindToFormVC" unwindAction="unwindToFormVC:" id="qBO-VB-PhZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ahv-iz-1sZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="fC4-8e-g3e" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1973.913043478261" y="-81.026785714285708"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aih-Mu-k34">
@@ -364,6 +440,7 @@
     </scenes>
     <resources>
         <image name="list.bullet" catalog="system" width="64" height="44"/>
+        <image name="multiply" catalog="system" width="64" height="54"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="fhj-Zh-wOV"/>

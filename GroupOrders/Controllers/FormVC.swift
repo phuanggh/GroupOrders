@@ -22,8 +22,15 @@ class FormVC: UIViewController {
     var size: SizeLevel = .big
     var price = ""
     var comment = ""
+    var mixin = ""
+    
+    // Menu Data
+    var items = [Item]()
+    var selectedDrink = 0
+    var selectedSize = 0
     
     
+    // MARK: UI Outlet
     
     @IBOutlet weak var nameTextFieldOutlet: UITextField!
     @IBOutlet weak var itemTextFieldOutlet: UITextField!
@@ -33,7 +40,9 @@ class FormVC: UIViewController {
     @IBOutlet weak var sizeSegOutlet: UISegmentedControl!
     @IBOutlet weak var priceTextFieldOutlet: UITextField!
     @IBOutlet weak var commentTextFieldOutlet: UITextField!
+    @IBOutlet weak var addWBubbleButtonOutlet: UIButton!
     
+    // MARK: UI Action
     
     @IBAction func sugarSegAction(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -50,14 +59,13 @@ class FormVC: UIViewController {
         default:
             sugar = .normal
         }
-
-        newOrder.sugar = sugar.rawValue
 //        print(sugar.rawValue)
     }
     
     @IBAction func hotDrinkSwitch(_ sender: UISwitch) {
         if sender.isOn {
             iceSegOutlet.isEnabled = false
+            ice = .hot
         } else {
             iceSegOutlet.isEnabled = true
         }
@@ -91,20 +99,25 @@ class FormVC: UIViewController {
         }
     }
     
-    @IBAction func bigBubble(_ sender: Any) {
+    @IBAction func addWBubbleSelected(_ sender: Any) {
+        
+        addWBubbleButtonOutlet.isSelected = !addWBubbleButtonOutlet.isSelected
+        
+        mixin = addWBubbleButtonOutlet.isSelected ? "白玉珍珠" : ""
+        
+        updateFormPrice()
+        
     }
-
     
     @IBAction func orderListButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "formToOrdersVCSegue", sender: "list")
             print(sender.tag)
     }
     
-    
     @IBAction func submitButtonPressed(_ sender: UIButton) {
 //        returnData()
         
-        if nameTextFieldOutlet.text?.isEmpty == false, itemTextFieldOutlet.text?.isEmpty == false, priceTextFieldOutlet.text?.isEmpty == false {
+        if nameTextFieldOutlet.text?.isEmpty == false, itemTextFieldOutlet.text?.isEmpty == false {
         
             if isNewOrder {
                 performSegue(withIdentifier: "formToOrdersVCSegue", sender: "submitNewOrder")
@@ -130,35 +143,74 @@ class FormVC: UIViewController {
                 itemTextFieldOutlet.layer.borderColor = UIColor.clear.cgColor
             }
             
-            if priceTextFieldOutlet.text?.isEmpty == true {
-                priceTextFieldOutlet.layer.borderWidth = 1
-                priceTextFieldOutlet.layer.borderColor = UIColor.systemPink.cgColor
-            } else {
-                priceTextFieldOutlet.layer.borderColor = UIColor.clear.cgColor
-            }
         }
-        
-
         
     }
     
+    @IBAction func menuButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "formToPickerSegue", sender: "menu")
+    }
+    
+    
+    // MARK: Function Declaration
+    
     func submitNewOrder() {
-        
+        // need to revise. replace the outlet parts
         newOrder.name = nameTextFieldOutlet.text ?? ""
         newOrder.item = itemTextFieldOutlet.text ?? ""
         newOrder.sugar = sugar.rawValue
         newOrder.size = size.rawValue
         newOrder.price = priceTextFieldOutlet.text ?? ""
-                
-        if hotSwitchOutlet.isOn {
-            newOrder.ice = IceLevel.hot.rawValue
-        } else {
-            newOrder.ice = ice.rawValue
-        }
+        newOrder.ice = ice.rawValue
+        newOrder.mixin = mixin
+        
+//        if hotSwitchOutlet.isOn {
+//            newOrder.ice = IceLevel.hot.rawValue
+//        } else {
+//            newOrder.ice = ice.rawValue
+//        }
+        
         if commentTextFieldOutlet.text != "" {
             newOrder.comment = commentTextFieldOutlet.text
         }
 
+
+    }
+    
+    // Update item, size
+    func updateFormOutlet() {
+        itemTextFieldOutlet.text = items[selectedDrink].drink
+        size = items[selectedDrink].option[selectedSize].size == "L" ? SizeLevel.big : SizeLevel.medium
+
+        switch size {
+        case .big:
+            sizeSegOutlet.selectedSegmentIndex = 0
+        case .medium:
+            sizeSegOutlet.selectedSegmentIndex = 1
+        
+//            print("Form VC: \(mixin)")
+        
+        }
+    }
+    
+    // Deal with mixins and update price UI display
+    func updateFormPrice() {
+        let mixinPrice = mixin == "" ? 0 : 10
+        print("mixin price : \(mixinPrice)")
+        
+        if isNewOrder {
+            price = String( items[selectedDrink].option[selectedSize].price)
+//            let totalPrice = Int(price)! + mixinPrice
+//            priceTextFieldOutlet.text = String(totalPrice)
+            
+        } else {
+//            let originalPrice = mixin == "" ? Int(price)! : Int(price)! - 10
+//            let totalPrice = originalPrice + mixinPrice
+//            priceTextFieldOutlet.text = String(totalPrice)
+        }
+        
+            let totalPrice = Int(price)! + mixinPrice
+            priceTextFieldOutlet.text = String(totalPrice)
 
     }
     
@@ -170,54 +222,69 @@ class FormVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! OrdersVC
-        
+                
         let sender = sender as! String
-//        print(sender.tag)
-        if sender == "submitNewOrder" {
         
-            submitNewOrder()
-            SheetDBController.shared.postData(newOrder: newOrder) {
-                print("post data")
-                
-                SheetDBController.shared.getData { (orders) in
-                    destinationVC.orders = orders!
-                           
-                    DispatchQueue.main.async {
-                        destinationVC.tableView.reloadData()
-                        print("get data")
-                    }
-                            
-                }
+        if sender == "menu" {
+            let destinationVC = segue.destination as! MenuPickerVC
+            MenuDBController.shared.getMenuData { (items) in
+                destinationVC.items = items!
             }
-        
-        } else if sender == "editOrder" {
-            submitNewOrder()
-            SheetDBController.shared.putData(updatedOrder: newOrder, DBID: newOrder.id) {
-                
-                SheetDBController.shared.getData { (orders) in
-                    destinationVC.orders = orders!
-                           
-                    DispatchQueue.main.async {
-                        destinationVC.tableView.reloadData()
-                        print("get data")
-                    }
-                            
-                }
-            }
+
             
         } else {
             
-            SheetDBController.shared.getData { (orders) in
-                destinationVC.orders = orders!
-                
-                DispatchQueue.main.async {
-                    destinationVC.tableView.reloadData()
-                    print("get data")
+            let destinationVC = segue.destination as! OrdersVC
+
+    //        print(sender.tag)
+            if sender == "submitNewOrder" {
+            
+                submitNewOrder()
+                SheetDBController.shared.postData(newOrder: newOrder) {
+                    print("post data")
+                    
+                    SheetDBController.shared.getData { (orders) in
+                        destinationVC.orders = orders!
+                               
+                        DispatchQueue.main.async {
+                            destinationVC.tableView.reloadData()
+                            print("get data")
+                        }
+                                
+                    }
                 }
-                            
+            
+            } else if sender == "editOrder" {
+                submitNewOrder()
+                SheetDBController.shared.putData(updatedOrder: newOrder, DBID: newOrder.id) {
+                    
+                    SheetDBController.shared.getData { (orders) in
+                        destinationVC.orders = orders!
+                               
+                        DispatchQueue.main.async {
+                            destinationVC.tableView.reloadData()
+                            print("get data")
+                        }
+                                
+                    }
+                }
+                
+            } else {
+                
+                SheetDBController.shared.getData { (orders) in
+                    destinationVC.orders = orders!
+                    
+                    DispatchQueue.main.async {
+                        destinationVC.tableView.reloadData()
+                        print("get data")
+                    }
+                                
+                }
             }
+            
         }
+        
+
     }
 
 
@@ -233,6 +300,9 @@ class FormVC: UIViewController {
 //            print(orders)
 //        }
 
+        MenuDBController.shared.getMenuData { (items) in
+            self.items = items!
+        }
         
     }
     
@@ -240,9 +310,9 @@ class FormVC: UIViewController {
 //        isNewOrder = true
         nameTextFieldOutlet.text = name
         itemTextFieldOutlet.text = item
-        priceTextFieldOutlet.text = price
+        priceTextFieldOutlet.text = mixin == "" ? price : String( Int(price)! + 10 )
         commentTextFieldOutlet.text = comment
-        
+        addWBubbleButtonOutlet.isSelected = mixin == "" ? false : true
         switch sugar {
         case .normal:
             sugarSegOutlet.selectedSegmentIndex = 0
