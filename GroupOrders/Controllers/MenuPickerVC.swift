@@ -36,17 +36,6 @@ class MenuPickerVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
             destinationVC.selectedDrink = selectedDrink
             destinationVC.selectedSize = selectedSize
             
-            
-            
-            
-            
-            
-//            destinationVC.item = items[selectedDrink].drink
-//
-//            destinationVC.price = String( items[selectedDrink].option[selectedSize].price)
-//
-//            destinationVC.size = items[selectedDrink].option[selectedSize].size == "L" ? SizeLevel.big : SizeLevel.medium
-//
             destinationVC.sizeSegOutlet.isEnabled = items[selectedDrink].option.count == 2 ? true : false
             
             destinationVC.updateFormOutlet()

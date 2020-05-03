@@ -12,12 +12,14 @@ class OrderCell: UITableViewCell {
     
     
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var itemLabel: UILabel!
     @IBOutlet weak var sugarLabel: UILabel!
     @IBOutlet weak var iceLabel: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var mixinLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
+    @IBOutlet weak var picImageView: UIImageView!
     
     
     

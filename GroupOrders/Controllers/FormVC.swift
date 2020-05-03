@@ -41,6 +41,9 @@ class FormVC: UIViewController {
     @IBOutlet weak var priceTextFieldOutlet: UITextField!
     @IBOutlet weak var commentTextFieldOutlet: UITextField!
     @IBOutlet weak var addWBubbleButtonOutlet: UIButton!
+    @IBOutlet weak var menuButtonOutlet: UIButton!
+    @IBOutlet weak var submitButtonOutlet: UIButton!
+    
     
     // MARK: UI Action
     
@@ -103,6 +106,14 @@ class FormVC: UIViewController {
         
         addWBubbleButtonOutlet.isSelected = !addWBubbleButtonOutlet.isSelected
         
+        if addWBubbleButtonOutlet.isSelected {
+            addWBubbleButtonOutlet.layer.borderWidth = 3
+            addWBubbleButtonOutlet.layer.borderColor = UIColor(red: 0.73, green: 0.60, blue: 0.41, alpha: 1.00).cgColor
+            addWBubbleButtonOutlet.setTitleColor( #colorLiteral(red: 0.7294117647, green: 0.6039215686, blue: 0.4078431373, alpha: 1) , for: .selected)
+        } else {
+            addWBubbleButtonOutlet.layer.borderWidth = 0
+        }
+        
         mixin = addWBubbleButtonOutlet.isSelected ? "白玉珍珠" : ""
         
         updateFormPrice()
@@ -164,23 +175,22 @@ class FormVC: UIViewController {
         newOrder.ice = ice.rawValue
         newOrder.mixin = mixin
         
-//        if hotSwitchOutlet.isOn {
-//            newOrder.ice = IceLevel.hot.rawValue
-//        } else {
-//            newOrder.ice = ice.rawValue
-//        }
-        
         if commentTextFieldOutlet.text != "" {
             newOrder.comment = commentTextFieldOutlet.text
         }
 
-
     }
     
-    // Update item, size
+    // Update item, size from selected menu item
     func updateFormOutlet() {
-        itemTextFieldOutlet.text = items[selectedDrink].drink
-        size = items[selectedDrink].option[selectedSize].size == "L" ? SizeLevel.big : SizeLevel.medium
+        
+        if  isNewOrder {
+            itemTextFieldOutlet.text = items[selectedDrink].drink
+            size = items[selectedDrink].option[selectedSize].size == "L" ? SizeLevel.big : SizeLevel.medium
+        } else {
+            itemTextFieldOutlet.text = item
+            
+        }
 
         switch size {
         case .big:
@@ -188,30 +198,22 @@ class FormVC: UIViewController {
         case .medium:
             sizeSegOutlet.selectedSegmentIndex = 1
         
-//            print("Form VC: \(mixin)")
-        
         }
     }
     
     // Deal with mixins and update price UI display
     func updateFormPrice() {
         let mixinPrice = mixin == "" ? 0 : 10
-        print("mixin price : \(mixinPrice)")
+//        print("mixin price : \(mixinPrice)")
         
         if isNewOrder {
             price = String( items[selectedDrink].option[selectedSize].price)
-//            let totalPrice = Int(price)! + mixinPrice
-//            priceTextFieldOutlet.text = String(totalPrice)
             
-        } else {
-//            let originalPrice = mixin == "" ? Int(price)! : Int(price)! - 10
-//            let totalPrice = originalPrice + mixinPrice
-//            priceTextFieldOutlet.text = String(totalPrice)
         }
         
-            let totalPrice = Int(price)! + mixinPrice
-            priceTextFieldOutlet.text = String(totalPrice)
-
+        let totalPrice = Int(price)! + mixinPrice
+        priceTextFieldOutlet.text = String(totalPrice)
+    
     }
     
     
@@ -231,11 +233,9 @@ class FormVC: UIViewController {
                 destinationVC.items = items!
             }
 
-            
         } else {
             
             let destinationVC = segue.destination as! OrdersVC
-
     //        print(sender.tag)
             if sender == "submitNewOrder" {
             
@@ -245,10 +245,12 @@ class FormVC: UIViewController {
                     
                     SheetDBController.shared.getData { (orders) in
                         destinationVC.orders = orders!
-                               
+//                        let totalCup = orders?.count
+//                        destinationVC.totalCupLabelOutlet.text = String(totalCup ?? 0)
                         DispatchQueue.main.async {
                             destinationVC.tableView.reloadData()
-                            print("get data")
+                            destinationVC.updateTotalOrderInfo()
+//                            print("get data")
                         }
                                 
                     }
@@ -263,7 +265,8 @@ class FormVC: UIViewController {
                                
                         DispatchQueue.main.async {
                             destinationVC.tableView.reloadData()
-                            print("get data")
+//                            print("get data")
+                            destinationVC.updateTotalOrderInfo()
                         }
                                 
                     }
@@ -276,7 +279,8 @@ class FormVC: UIViewController {
                     
                     DispatchQueue.main.async {
                         destinationVC.tableView.reloadData()
-                        print("get data")
+//                        print("get data")
+                        destinationVC.updateTotalOrderInfo()
                     }
                                 
                 }
@@ -284,11 +288,7 @@ class FormVC: UIViewController {
             
         }
         
-
     }
-
-
-
     
     
     // MARK: - View Life Cycle
@@ -300,6 +300,10 @@ class FormVC: UIViewController {
 //            print(orders)
 //        }
 
+        menuButtonOutlet.layer.cornerRadius = menuButtonOutlet.frame.height / 4
+        addWBubbleButtonOutlet.layer.cornerRadius = menuButtonOutlet.frame.height / 4
+        submitButtonOutlet.layer.cornerRadius = menuButtonOutlet.frame.height / 4
+        
         MenuDBController.shared.getMenuData { (items) in
             self.items = items!
         }
