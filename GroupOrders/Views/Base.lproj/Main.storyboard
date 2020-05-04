@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--KEBUKE-->
+        <!--表單-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="FormVC" customModule="GroupOrders" customModuleProvider="target" sceneMemberID="viewController">
@@ -201,7 +201,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="KEBUKE" id="GUe-tv-VRS">
+                    <navigationItem key="navigationItem" title="表單" id="GUe-tv-VRS">
                         <barButtonItem key="rightBarButtonItem" tag="1" title="Item" image="list.bullet" catalog="system" id="yEn-eL-1Kf">
                             <color key="tintColor" red="0.7295297932" green="0.60545553740000002" blue="0.40767841379999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
@@ -243,7 +243,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="147" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tyc-XO-9Jd">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="147" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tyc-XO-9Jd">
                                 <rect key="frame" x="0.0" y="156" width="414" height="628"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -406,7 +406,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MENU" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2I2-W1-J12">
                                         <rect key="frame" x="0.0" y="0.0" width="339" height="43"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.089847423139999993" green="0.24148401620000001" blue="0.31373697519999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                         <color key="textColor" red="0.7295297932" green="0.60545553740000002" blue="0.40767841379999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -452,6 +452,7 @@
                     <navigationItem key="navigationItem" id="sIv-uH-qmc"/>
                     <connections>
                         <outlet property="menuPickerOutlet" destination="AxR-RA-t5O" id="M43-j0-QJi"/>
+                        <outlet property="submitButtonOutlet" destination="O6I-Uu-jw1" id="v62-BP-6YO"/>
                         <segue destination="fC4-8e-g3e" kind="unwind" identifier="unwindToFormVC" unwindAction="unwindToFormVC:" id="qBO-VB-PhZ"/>
                     </connections>
                 </viewController>

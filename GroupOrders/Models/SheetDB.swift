@@ -8,10 +8,6 @@
 
 import UIKit
 
-//struct SheetData: Codable {
-//    let order: Order
-//
-//}
 struct Order: Codable {
     var id: String
     var name: String
@@ -33,18 +29,6 @@ struct Order: Codable {
         price = ""
     }
 }
-
-//enum ParamKey: String {
-//    //case data
-//    case name
-//    case item
-//    case sugar
-//    case ice
-//    case size
-//    case mixin
-//    case price
-//    case comment
-//}
 
 enum SugarLevel: String {
     case normal = "全糖"
@@ -98,13 +82,9 @@ internal struct SheetDBController {
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             
-//            var postData = newOrder
-//            print(newOrder)
             let postData = ["data":newOrder]
-//            print(postData)
             
             if let data = try? JSONEncoder().encode(postData) {
-//                request.httpBody = data
                 
                 // Decode the return response from API to know if it is successful or failed
                 URLSession.shared.uploadTask(with: request, from: data) { returnData, response, error in
@@ -134,7 +114,6 @@ internal struct SheetDBController {
 
             
             let putData = ["data":updatedOrder]
-//            print("updated order: \(putData)")
             if let data = try? JSONEncoder().encode(putData) {
                 URLSession.shared.uploadTask(with: request, from: data) { returnData, response, error in
                     

@@ -13,6 +13,7 @@ class MenuPickerVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
     var items = [Item]()
     
     @IBOutlet weak var menuPickerOutlet: UIPickerView!
+    @IBOutlet weak var submitButtonOutlet: UIButton!
     
     
     @IBAction func returnButtonPressed(_ sender: Any) {
@@ -103,20 +104,11 @@ class MenuPickerVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        submitButtonOutlet.layer.cornerRadius = submitButtonOutlet.frame.height / 4
+        
 
     }
 
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

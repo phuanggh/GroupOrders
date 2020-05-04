@@ -115,14 +115,17 @@ class FormVC: UIViewController {
         }
         
         mixin = addWBubbleButtonOutlet.isSelected ? "白玉珍珠" : ""
-        
-        updateFormPrice()
+        if itemTextFieldOutlet.text == "" {
+            priceTextFieldOutlet.text = ""
+        } else {
+            updateFormPrice()
+        }
+
         
     }
     
     @IBAction func orderListButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "formToOrdersVCSegue", sender: "list")
-            print(sender.tag)
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
@@ -301,8 +304,8 @@ class FormVC: UIViewController {
 //        }
 
         menuButtonOutlet.layer.cornerRadius = menuButtonOutlet.frame.height / 4
-        addWBubbleButtonOutlet.layer.cornerRadius = menuButtonOutlet.frame.height / 4
-        submitButtonOutlet.layer.cornerRadius = menuButtonOutlet.frame.height / 4
+        addWBubbleButtonOutlet.layer.cornerRadius = addWBubbleButtonOutlet.frame.height / 4
+        submitButtonOutlet.layer.cornerRadius = submitButtonOutlet.frame.height / 4
         
         MenuDBController.shared.getMenuData { (items) in
             self.items = items!
@@ -311,7 +314,7 @@ class FormVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        isNewOrder = true
+
         nameTextFieldOutlet.text = name
         itemTextFieldOutlet.text = item
         priceTextFieldOutlet.text = mixin == "" ? price : String( Int(price)! + 10 )
