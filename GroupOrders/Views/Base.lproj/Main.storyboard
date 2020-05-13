@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DKi-pm-xLR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cR9-pm-Je1">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
@@ -7,6 +7,100 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--LoginVC-->
+        <scene sceneID="uo5-6g-S8M">
+            <objects>
+                <viewController id="cR9-pm-Je1" customClass="LoginVC" customModule="GroupOrders" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1Nz-eG-f1E">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="marbleWallpaper" translatesAutoresizingMaskIntoConstraints="NO" id="XgF-v3-N45">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pTh-ch-Box">
+                                <rect key="frame" x="84" y="372" width="232" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EWE-8a-Rtw">
+                                <rect key="frame" x="84" y="427" width="232" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Kr-7y-QzB">
+                                <rect key="frame" x="84" y="487" width="232" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TBf-SW-eFf">
+                                <rect key="frame" x="113" y="614" width="172" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.72941176470000002" green="0.60392156860000001" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitButtonPressed:" destination="cR9-pm-Je1" eventType="touchUpInside" id="j55-je-Hqg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nzh-Xo-HU2">
+                                <rect key="frame" x="113" y="677" width="172" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="-70" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Login" image="facebookIconx24Blue">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="fbButtonPressed:" destination="cR9-pm-Je1" eventType="touchUpInside" id="bec-V0-7g6"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="jmE-GJ-ahF">
+                                <rect key="frame" x="160" y="529" width="79" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </activityIndicatorView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="kebuke" translatesAutoresizingMaskIntoConstraints="NO" id="p35-kc-Lam">
+                                <rect key="frame" x="32" y="124" width="351" height="122"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UgB-Nq-8GW">
+                                <rect key="frame" x="45" y="308" width="324" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.72941176470000002" green="0.60392156860000001" blue="0.40784313729999999" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
+                                <segments>
+                                    <segment title="Register"/>
+                                    <segment title="Login"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControlChanged:" destination="cR9-pm-Je1" eventType="valueChanged" id="so8-HI-HY5"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="dfO-w9-ZDN"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextFieldOutlet" destination="EWE-8a-Rtw" id="2wT-0D-pQc"/>
+                        <outlet property="fbButtonOutlet" destination="Nzh-Xo-HU2" id="Wc8-2e-blt"/>
+                        <outlet property="indicatorOutlet" destination="jmE-GJ-ahF" id="QDU-Em-3yL"/>
+                        <outlet property="nameTextFieldOutlet" destination="pTh-ch-Box" id="l7j-w2-cYT"/>
+                        <outlet property="pwTextFieldOutlet" destination="6Kr-7y-QzB" id="zSB-1S-Iqi"/>
+                        <outlet property="segmentedControlOutlet" destination="UgB-Nq-8GW" id="xD1-gi-pCc"/>
+                        <outlet property="submitButtonOutlet" destination="TBf-SW-eFf" id="uXE-C7-lNb"/>
+                        <segue destination="DKi-pm-xLR" kind="presentation" identifier="goToNavigation" modalPresentationStyle="fullScreen" id="XGk-jV-jRt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ncm-DJ-W2f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="973.91304347826099" y="-621.42857142857144"/>
+        </scene>
         <!--表單-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -202,6 +296,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="表單" id="GUe-tv-VRS">
+                        <barButtonItem key="leftBarButtonItem" title="登出" id="JXk-6y-uok">
+                            <connections>
+                                <action selector="logoutButtonPressed:" destination="BYZ-38-t0r" id="q2e-mR-e7h"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" tag="1" title="Item" image="list.bullet" catalog="system" id="yEn-eL-1Kf">
                             <color key="tintColor" red="0.7295297932" green="0.60545553740000002" blue="0.40767841379999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
@@ -224,6 +323,7 @@
                         <segue destination="N1R-Nt-46D" kind="show" identifier="formToOrdersVCSegue" id="fhj-Zh-wOV"/>
                         <segue destination="MaS-p8-pU5" kind="unwind" identifier="unwindToOrderVC" unwindAction="unwindToOrderVC:" id="oGj-iF-wg5"/>
                         <segue destination="9AR-2I-X80" kind="presentation" identifier="formToPickerSegue" modalPresentationStyle="overCurrentContext" id="dGu-3n-tRc"/>
+                        <segue destination="MaS-p8-pU5" kind="unwind" identifier="unwindToLoginVC" unwindAction="unwindToLoginVC:" id="Ihd-f2-fSK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -389,7 +489,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Khp-za-KbJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="eDt-JF-tF2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2000.0000000000002" y="656.25"/>
+            <point key="canvasLocation" x="1974" y="643"/>
         </scene>
         <!--Menu PickerVC-->
         <scene sceneID="eD8-ub-cHf">
@@ -479,10 +579,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Lz-BS-De4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="126.5625"/>
+            <point key="canvasLocation" x="139" y="120"/>
         </scene>
     </scenes>
     <resources>
+        <image name="facebookIconx24Blue" width="24" height="24"/>
+        <image name="kebuke" width="370" height="136"/>
         <image name="list.bullet" catalog="system" width="64" height="44"/>
         <image name="marbleWallpaper" width="960" height="640"/>
         <image name="multiply" catalog="system" width="64" height="54"/>

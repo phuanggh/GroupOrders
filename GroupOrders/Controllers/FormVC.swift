@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class FormVC: UIViewController {
 
+    struct PropertyKeys {
+        static let unwindToLogin = "unwindToLoginVC"
+    }
+    
     var isNewOrder = true
     
     // For API data transfer
@@ -43,6 +48,41 @@ class FormVC: UIViewController {
     @IBOutlet weak var addWBubbleButtonOutlet: UIButton!
     @IBOutlet weak var menuButtonOutlet: UIButton!
     @IBOutlet weak var submitButtonOutlet: UIButton!
+    
+    //MARK: SDK
+    
+    @IBAction func logoutButtonPressed(_ sender: UIButton) {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+
+            performSegue(withIdentifier: PropertyKeys.unwindToLogin, sender: "logoutBarButton")
+            
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+          
+    }
+    
+    func testCurrentUser() {
+
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if Auth.auth().currentUser != nil {
+
+                let user = Auth.auth().currentUser
+                if let user = user {
+                    let uid = user.uid
+                    let email = user.email
+                    let userName = user.displayName
+                    print("User Information: UID: \(uid), Email: \(email ?? "No available email"), User Name: \(userName ?? "No available User Name")")
+                }
+            } else {
+                print("current user is nil")
+            }
+        }
+        
+    }
+    
     
     
     // MARK: UI Action
@@ -235,6 +275,8 @@ class FormVC: UIViewController {
             MenuDBController.shared.getMenuData { (items) in
                 destinationVC.items = items!
             }
+        } else if sender == "logoutBarButton" {
+            
 
         } else {
             
@@ -315,6 +357,24 @@ class FormVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
 
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            
+            let user = user
+            self.name = user?.displayName ?? ""
+            print(self.name)
+            self.nameTextFieldOutlet.text = self.name
+            
+//            if Auth.auth().currentUser != nil {
+//
+//                let user = Auth.auth().currentUser
+//                if let user = user {
+//                    self.name = user.displayName ?? ""
+//                    print(self.name)
+//                }
+//            } else {
+//                print("current user is nil")
+//            }
+        }
         nameTextFieldOutlet.text = name
         itemTextFieldOutlet.text = item
         priceTextFieldOutlet.text = mixin == "" ? price : String( Int(price)! + 10 )
