@@ -69,56 +69,63 @@ class LoginVC: UIViewController {
                 }
                 
             } else {
-                
-                indicatorOutlet.startAnimating()
-                indicatorOutlet.layer.cornerRadius = indicatorOutlet.frame.height / 5
-                
-                Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-
-                    if let e = error {
-                        self.indicatorOutlet.stopAnimating()
-                        
-                        let alert = UIAlertController(title: "Oops!", message: "\(e.localizedDescription)", preferredStyle: .alert)
-                        let alertAction = UIAlertAction(title: "Cancel", style: .cancel) {
-                            (alertAction) in
-                        }
-                        alert.addAction(alertAction)
-                        self.present(alert, animated: true, completion: nil)
+                if nameTextFieldOutlet.text == "" {
+                    nameTextFieldOutlet.layer.borderWidth = 1
+                    nameTextFieldOutlet.layer.borderColor = UIColor.red.cgColor
+                } else {
+                    nameTextFieldOutlet.layer.borderWidth = 0
                     
-                        print(e)
+                    indicatorOutlet.startAnimating()
+                    indicatorOutlet.layer.cornerRadius = indicatorOutlet.frame.height / 5
+                    
+                    Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+
+                        if let e = error {
+                            self.indicatorOutlet.stopAnimating()
+                            
+                            let alert = UIAlertController(title: "Oops!", message: "\(e.localizedDescription)", preferredStyle: .alert)
+                            let alertAction = UIAlertAction(title: "Cancel", style: .cancel) {
+                                (alertAction) in
+                            }
+                            alert.addAction(alertAction)
+                            self.present(alert, animated: true, completion: nil)
                         
-                    } else {
+                            print(e)
+                            
+                        } else {
 
-                        let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-                        changeRequest?.displayName = self.nameTextFieldOutlet.text
-                        changeRequest?.commitChanges { (error) in
+                            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                            changeRequest?.displayName = self.nameTextFieldOutlet.text
+                            changeRequest?.commitChanges { (error) in
 
-                            if let e = error {
-                                self.indicatorOutlet.stopAnimating()
-                                print(e.localizedDescription)
-                            } else {
+                                if let e = error {
+                                    self.indicatorOutlet.stopAnimating()
+                                    print(e.localizedDescription)
+                                } else {
 
-                                Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+                                    Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
 
-                                    if let e = error {
-                                        self!.indicatorOutlet.stopAnimating()
-                                      let alert = UIAlertController(title: "Oops!", message: "\(e.localizedDescription)", preferredStyle: .alert)
-                                      let alertAction = UIAlertAction(title: "Cancel", style: .cancel) {
-                                          (alertAction) in
-                                      }
-                                      alert.addAction(alertAction)
-                                      self!.present(alert, animated: true, completion: nil)
-                                      print(e)
-                                    } else {
-                                        self!.performSegue(withIdentifier: PropertyKeys.showNavigation, sender: self)
+                                        if let e = error {
+                                            self!.indicatorOutlet.stopAnimating()
+                                          let alert = UIAlertController(title: "Oops!", message: "\(e.localizedDescription)", preferredStyle: .alert)
+                                          let alertAction = UIAlertAction(title: "Cancel", style: .cancel) {
+                                              (alertAction) in
+                                          }
+                                          alert.addAction(alertAction)
+                                          self!.present(alert, animated: true, completion: nil)
+                                          print(e)
+                                        } else {
+                                            self!.performSegue(withIdentifier: PropertyKeys.showNavigation, sender: self)
+                                        }
+    //                                    guard let strongSelf = self else { return }
                                     }
-//                                    guard let strongSelf = self else { return }
                                 }
                             }
-                        }
 
+                        }
                     }
                 }
+
             }
         }
         
@@ -127,7 +134,7 @@ class LoginVC: UIViewController {
     
     @IBAction func fbButtonPressed(_ sender: Any) {
         let manager = LoginManager()
-        
+        manager.logOut()
         manager.logIn(permissions:["public_profile", "email"], from: nil) { (result, error) in
                 if let err = error {
                     print(err.localizedDescription)
@@ -142,11 +149,13 @@ class LoginVC: UIViewController {
                     Auth.auth().signIn(with: credential) { (authResult, error) in
                         if let error = error {
                             print("Sign in error: \(error)")
+                        } else {
+                            self.performSegue(withIdentifier: PropertyKeys.showNavigation, sender: self)
                         }
                         
                     }
 
-                    self.performSegue(withIdentifier: PropertyKeys.showNavigation, sender: self)
+
                 }
                              
             }
@@ -206,6 +215,7 @@ class LoginVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         indicatorOutlet.stopAnimating()
+        nameTextFieldOutlet.isHidden = false
         segmentedControlOutlet.selectedSegmentIndex = 0
         nameTextFieldOutlet.text = ""
         emailTextFieldOutlet.text = ""
