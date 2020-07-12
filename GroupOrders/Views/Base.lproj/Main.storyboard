@@ -459,13 +459,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="marbleWallpaper" translatesAutoresizingMaskIntoConstraints="NO" id="p13-go-9Zh">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="marbleWallpaper" translatesAutoresizingMaskIntoConstraints="NO" id="p13-go-9Zh">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="147" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tyc-XO-9Jd">
-                                <rect key="frame" x="0.0" y="156" width="414" height="628"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="147" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tyc-XO-9Jd">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="762"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" red="0.7295297932" green="0.60545553740000002" blue="0.40767841379999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
@@ -558,9 +556,8 @@
                                     <outlet property="delegate" destination="N1R-Nt-46D" id="2LO-eo-5oh"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E7I-ky-jGs">
-                                <rect key="frame" x="0.0" y="784" width="414" height="78"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7I-ky-jGs">
+                                <rect key="frame" x="0.0" y="762" width="414" height="80"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="總杯數" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2H-ox-VeS">
                                         <rect key="frame" x="74" y="21" width="52" height="21"/>
@@ -592,9 +589,25 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="xh7-35-d8V"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="p13-go-9Zh" firstAttribute="trailing" secondItem="OP0-7L-NOP" secondAttribute="trailing" id="FJj-Tw-u80"/>
+                            <constraint firstItem="E7I-ky-jGs" firstAttribute="top" secondItem="tyc-XO-9Jd" secondAttribute="bottom" id="HGL-MW-JoH"/>
+                            <constraint firstItem="E7I-ky-jGs" firstAttribute="leading" secondItem="OP0-7L-NOP" secondAttribute="leading" id="PK6-5I-82K"/>
+                            <constraint firstItem="p13-go-9Zh" firstAttribute="top" secondItem="HHe-hq-zs7" secondAttribute="top" id="Whp-6d-kuu"/>
+                            <constraint firstItem="tyc-XO-9Jd" firstAttribute="leading" secondItem="OP0-7L-NOP" secondAttribute="leading" id="XMZ-c8-0uw"/>
+                            <constraint firstItem="E7I-ky-jGs" firstAttribute="trailing" secondItem="OP0-7L-NOP" secondAttribute="trailing" id="c2U-v7-9Xh"/>
+                            <constraint firstAttribute="bottom" secondItem="p13-go-9Zh" secondAttribute="bottom" id="ciK-kF-KKg"/>
+                            <constraint firstItem="tyc-XO-9Jd" firstAttribute="top" secondItem="OP0-7L-NOP" secondAttribute="top" id="fOq-FO-OBT"/>
+                            <constraint firstItem="p13-go-9Zh" firstAttribute="leading" secondItem="OP0-7L-NOP" secondAttribute="leading" id="sTP-eC-tDw"/>
+                            <constraint firstItem="tyc-XO-9Jd" firstAttribute="trailing" secondItem="OP0-7L-NOP" secondAttribute="trailing" id="ur3-yx-gq2"/>
+                            <constraint firstAttribute="bottom" secondItem="E7I-ky-jGs" secondAttribute="bottom" id="vkB-ue-A9E"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="OP0-7L-NOP"/>
                     </view>
                     <navigationItem key="navigationItem" title="訂單" id="9KS-Ly-aBL"/>
@@ -738,7 +751,6 @@
         <image name="multiply" catalog="system" width="64" height="54"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fhj-Zh-wOV"/>
         <segue reference="qwd-yu-Ahv"/>
     </inferredMetricsTieBreakers>
 </document>

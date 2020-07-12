@@ -18,6 +18,14 @@
 		7A3641E524508ADE005FE217 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A3641E324508ADE005FE217 /* LaunchScreen.storyboard */; };
 		7A3641EF2450998C005FE217 /* OrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3641EE2450998C005FE217 /* OrdersVC.swift */; };
 		7A3641F12450A39C005FE217 /* SheetDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3641F02450A39C005FE217 /* SheetDB.swift */; };
+		7A75574F24BB3B7A00CF9334 /* GroupOrderDemo2-1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7A75574724BB3B7800CF9334 /* GroupOrderDemo2-1.gif */; };
+		7A75575024BB3B7A00CF9334 /* GroupOrderDemo2-2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7A75574824BB3B7800CF9334 /* GroupOrderDemo2-2.gif */; };
+		7A75575124BB3B7A00CF9334 /* GroupOrderDemo1-4.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7A75574924BB3B7800CF9334 /* GroupOrderDemo1-4.gif */; };
+		7A75575224BB3B7A00CF9334 /* GroupOrderDemo2-3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7A75574A24BB3B7900CF9334 /* GroupOrderDemo2-3.gif */; };
+		7A75575324BB3B7A00CF9334 /* GroupOrderDemo2-4.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7A75574B24BB3B7900CF9334 /* GroupOrderDemo2-4.gif */; };
+		7A75575424BB3B7A00CF9334 /* GroupOrderDemo1-2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7A75574C24BB3B7900CF9334 /* GroupOrderDemo1-2.gif */; };
+		7A75575524BB3B7A00CF9334 /* GroupOrderDemo1-1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7A75574D24BB3B7A00CF9334 /* GroupOrderDemo1-1.gif */; };
+		7A75575824BB3BB400CF9334 /* GroupOrderDemo1-3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7A75575724BB3BB400CF9334 /* GroupOrderDemo1-3.gif */; };
 		7A7D117F2461A2A6005D311E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7A7D117E2461A2A6005D311E /* GoogleService-Info.plist */; };
 		7A9F6575245C065300E2A80A /* Menu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7A9F6574245C065300E2A80A /* Menu.plist */; };
 		7A9F6577245C0B0500E2A80A /* MenuDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9F6576245C0B0500E2A80A /* MenuDB.swift */; };
@@ -42,6 +50,14 @@
 		7A3641E624508ADE005FE217 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A3641EE2450998C005FE217 /* OrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersVC.swift; sourceTree = "<group>"; };
 		7A3641F02450A39C005FE217 /* SheetDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetDB.swift; sourceTree = "<group>"; };
+		7A75574724BB3B7800CF9334 /* GroupOrderDemo2-1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "GroupOrderDemo2-1.gif"; sourceTree = "<group>"; };
+		7A75574824BB3B7800CF9334 /* GroupOrderDemo2-2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "GroupOrderDemo2-2.gif"; sourceTree = "<group>"; };
+		7A75574924BB3B7800CF9334 /* GroupOrderDemo1-4.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "GroupOrderDemo1-4.gif"; sourceTree = "<group>"; };
+		7A75574A24BB3B7900CF9334 /* GroupOrderDemo2-3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "GroupOrderDemo2-3.gif"; sourceTree = "<group>"; };
+		7A75574B24BB3B7900CF9334 /* GroupOrderDemo2-4.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "GroupOrderDemo2-4.gif"; sourceTree = "<group>"; };
+		7A75574C24BB3B7900CF9334 /* GroupOrderDemo1-2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "GroupOrderDemo1-2.gif"; sourceTree = "<group>"; };
+		7A75574D24BB3B7A00CF9334 /* GroupOrderDemo1-1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "GroupOrderDemo1-1.gif"; sourceTree = "<group>"; };
+		7A75575724BB3BB400CF9334 /* GroupOrderDemo1-3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "GroupOrderDemo1-3.gif"; sourceTree = "<group>"; };
 		7A7D117E2461A2A6005D311E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7A9F6574245C065300E2A80A /* Menu.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Menu.plist; sourceTree = "<group>"; };
 		7A9F6576245C0B0500E2A80A /* MenuDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDB.swift; sourceTree = "<group>"; };
@@ -91,6 +107,7 @@
 			children = (
 				7A3641D824508ADA005FE217 /* AppDelegate.swift */,
 				7A3641DA24508ADA005FE217 /* SceneDelegate.swift */,
+				7A75574624BB3B4600CF9334 /* DemoImages */,
 				7A3641F22450A3A1005FE217 /* Models */,
 				7A3641ED24509929005FE217 /* Controllers */,
 				7A3641EC24509921005FE217 /* Views */,
@@ -131,6 +148,21 @@
 				7A9F6576245C0B0500E2A80A /* MenuDB.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		7A75574624BB3B4600CF9334 /* DemoImages */ = {
+			isa = PBXGroup;
+			children = (
+				7A75574D24BB3B7A00CF9334 /* GroupOrderDemo1-1.gif */,
+				7A75574C24BB3B7900CF9334 /* GroupOrderDemo1-2.gif */,
+				7A75575724BB3BB400CF9334 /* GroupOrderDemo1-3.gif */,
+				7A75574924BB3B7800CF9334 /* GroupOrderDemo1-4.gif */,
+				7A75574724BB3B7800CF9334 /* GroupOrderDemo2-1.gif */,
+				7A75574824BB3B7800CF9334 /* GroupOrderDemo2-2.gif */,
+				7A75574A24BB3B7900CF9334 /* GroupOrderDemo2-3.gif */,
+				7A75574B24BB3B7900CF9334 /* GroupOrderDemo2-4.gif */,
+			);
+			path = DemoImages;
 			sourceTree = "<group>";
 		};
 		8581994A17A57E80BEF085B5 /* Pods */ = {
@@ -202,12 +234,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A75575024BB3B7A00CF9334 /* GroupOrderDemo2-2.gif in Resources */,
 				7A3641E524508ADE005FE217 /* LaunchScreen.storyboard in Resources */,
+				7A75575124BB3B7A00CF9334 /* GroupOrderDemo1-4.gif in Resources */,
+				7A75574F24BB3B7A00CF9334 /* GroupOrderDemo2-1.gif in Resources */,
+				7A75575824BB3BB400CF9334 /* GroupOrderDemo1-3.gif in Resources */,
 				7A3641E224508ADE005FE217 /* Assets.xcassets in Resources */,
+				7A75575224BB3B7A00CF9334 /* GroupOrderDemo2-3.gif in Resources */,
 				7A0EA8F62454075F000FE6EF /* Preview Assets.xcassets in Resources */,
+				7A75575524BB3B7A00CF9334 /* GroupOrderDemo1-1.gif in Resources */,
 				7A3641E024508ADA005FE217 /* Main.storyboard in Resources */,
+				7A75575324BB3B7A00CF9334 /* GroupOrderDemo2-4.gif in Resources */,
 				7A9F6575245C065300E2A80A /* Menu.plist in Resources */,
 				7A7D117F2461A2A6005D311E /* GoogleService-Info.plist in Resources */,
+				7A75575424BB3B7A00CF9334 /* GroupOrderDemo1-2.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
