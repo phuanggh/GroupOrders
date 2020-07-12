@@ -12,8 +12,10 @@ A group order app allowing users to create, edit, and delete orders.
 <ul>
 <li class="has-line-data" data-line-start="1" data-line-end="3">Facebook Login<br>
 <img src="DemoImages/GroupOrderDemo2-1.gif" alt="image"></li>
+<br>
 <li class="has-line-data" data-line-start="3" data-line-end="5">Firebase Password-Based Accounts<br>
 <img src="DemoImages/GroupOrderDemo2-2.gif" alt="image"> <img src="DemoImages/GroupOrderDemo2-3.gif" alt="image"></li>
+<br>
 <li class="has-line-data" data-line-start="5" data-line-end="8">Error Message<br>
 <img src="DemoImages/GroupOrderDemo2-4.gif" alt="image"></li>
 </ul>
@@ -21,6 +23,7 @@ A group order app allowing users to create, edit, and delete orders.
 <ul>
 <li class="has-line-data" data-line-start="9" data-line-end="11">Add an item<br>
 <img src="DemoImages/GroupOrderDemo1-2.gif" alt="image"></li>
+<br>
 <li class="has-line-data" data-line-start="11" data-line-end="13">Edit and Delete an item<br>
 <img src="DemoImages/GroupOrderDemo1-4.gif" alt="image"></li>
 </ul>
